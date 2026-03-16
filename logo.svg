@@ -1,34 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <filter id="round-corners" x="-5%" y="-5%" width="110%" height="110%">
+      <feMorphology operator="erode" radius="5" result="eroded"/>
+      <feMorphology in="eroded" operator="dilate" radius="5"/>
+    </filter>
+  </defs>
 
-  <!-- Flat-top hexagon: cx=110, cy=110, r=88 -->
-  <!-- Right(198,110) UR(154,34) UL(66,34) Left(22,110) LL(66,186) LR(154,186) -->
+  <!-- Flat-top hexagon with rounded corners via filter -->
   <polygon
-    points="198,110 154,34 66,34 22,110 66,186 154,186"
+    points="194,110 152,37 68,37 26,110 68,183 152,183"
     fill="white"
     stroke="#C6963A"
-    stroke-width="11"
+    stroke-width="9"
     stroke-linejoin="round"
+    filter="url(#round-corners)"
   />
 
-  <!-- L — thick, rounded corner, dark navy -->
+  <!-- L — smaller, centered, breathing room -->
   <polyline
-    points="82,58 82,158 150,158"
+    points="90,70 90,150 146,150"
     fill="none"
     stroke="#1a1f3c"
-    stroke-width="16"
+    stroke-width="10"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
 
-  <!-- Molecular bond: two equal gold dots + connecting line -->
+  <!-- Molecular bond — dots pulled slightly inward -->
   <line
-    x1="148" y1="148"
-    x2="178" y2="104"
+    x1="150" y1="135"
+    x2="170" y2="103"
     stroke="#C6963A"
-    stroke-width="3"
+    stroke-width="2.5"
     stroke-linecap="round"
   />
-  <circle cx="148" cy="148" r="9.5" fill="#C6963A"/>
-  <circle cx="178" cy="104" r="9.5" fill="#C6963A"/>
+  <circle cx="150" cy="135" r="6.5" fill="#C6963A"/>
+  <circle cx="170" cy="103" r="6.5" fill="#C6963A"/>
 
 </svg>
