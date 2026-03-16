@@ -1,40 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
-  <defs>
-    <filter id="round-corners" x="-5%" y="-5%" width="110%" height="110%">
-      <feMorphology operator="erode" radius="5" result="eroded"/>
-      <feMorphology in="eroded" operator="dilate" radius="5"/>
-    </filter>
-  </defs>
 
-  <!-- Flat-top hexagon with rounded corners via filter -->
-  <polygon
-    points="194,110 152,37 68,37 26,110 68,183 152,183"
+  <!-- Flat-top hexagon with rounded corners -->
+  <path
+    d="M188,99.6 L158,47.4 Q152,37 140,37 L80,37 Q68,37 62,47.4 L32,99.6 Q26,110 32,120.4 L62,172.6 Q68,183 80,183 L140,183 Q152,183 158,172.6 L188,120.4 Q194,110 188,99.6 Z"
     fill="white"
     stroke="#C6963A"
     stroke-width="9"
-    stroke-linejoin="round"
-    filter="url(#round-corners)"
   />
 
-  <!-- L — smaller, centered, breathing room -->
+  <!-- L — pulled in, lighter, more breathing room -->
   <polyline
-    points="90,70 90,150 146,150"
+    points="82,70 82,148 142,148"
     fill="none"
     stroke="#1a1f3c"
-    stroke-width="10"
+    stroke-width="12"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
 
-  <!-- Molecular bond — dots pulled slightly inward -->
+  <!-- Dots: lower bigger, upper smaller, both with clear space from hexagon edge -->
   <line
-    x1="152" y1="115"
-    x2="172" y2="83"
+    x1="147" y1="124"
+    x2="166" y2="96"
     stroke="#C6963A"
-    stroke-width="2.5"
+    stroke-width="2"
     stroke-linecap="round"
   />
-  <circle cx="152" cy="115" r="6.5" fill="#C6963A"/>
-  <circle cx="172" cy="83" r="6.5" fill="#C6963A"/>
+  <circle cx="147" cy="124" r="9"  fill="#C6963A"/>
+  <circle cx="166" cy="96"  r="6"  fill="#C6963A"/>
 
 </svg>
