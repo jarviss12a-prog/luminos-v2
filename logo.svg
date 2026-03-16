@@ -20,13 +20,13 @@
 
   <!-- Dots: lower bigger, upper smaller, both with clear space from hexagon edge -->
   <line
-    x1="147" y1="124"
-    x2="166" y2="96"
+    x1="138" y1="115"
+    x2="157" y2="87"
     stroke="#C6963A"
     stroke-width="2"
     stroke-linecap="round"
   />
-  <circle cx="147" cy="124" r="7"  fill="#C6963A"/>
-  <circle cx="166" cy="96"  r="6"  fill="#C6963A"/>
+  <circle cx="138" cy="115" r="6.5" fill="#C6963A"/>
+  <circle cx="157" cy="87"  r="6.5" fill="#C6963A"/>
 
 </svg>
