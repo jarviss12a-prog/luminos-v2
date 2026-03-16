@@ -31,6 +31,6 @@
   <!-- small dot (near L corner) -->
   <circle cx="132" cy="118" r="8" fill="#C6963A"/>
   <!-- large dot (upper right) -->
-  <circle cx="163" cy="82" r="11" fill="#C6963A"/>
+  <circle cx="163" cy="82" r="7.7" fill="#C6963A"/>
 
 </svg>
