@@ -28,13 +28,13 @@
 
   <!-- Molecular bond — dots pulled slightly inward -->
   <line
-    x1="150" y1="135"
-    x2="170" y2="103"
+    x1="152" y1="115"
+    x2="172" y2="83"
     stroke="#C6963A"
     stroke-width="2.5"
     stroke-linecap="round"
   />
-  <circle cx="150" cy="135" r="6.5" fill="#C6963A"/>
-  <circle cx="170" cy="103" r="6.5" fill="#C6963A"/>
+  <circle cx="152" cy="115" r="6.5" fill="#C6963A"/>
+  <circle cx="172" cy="83" r="6.5" fill="#C6963A"/>
 
 </svg>
