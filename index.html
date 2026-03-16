@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luminos Peptides — Research Grade Peptides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fb;
+      --light-gray: #f0f2f5;
+      --border: #e4e7ec;
+      --text-muted: #7a8499;
+      --text-body: #3d4452;
+      --text-dark: #111827;
+      --accent: #2563eb;
+      --accent-light: #eff4ff;
+      --accent-hover: #1d4ed8;
+      --success: #059669;
+      --font: 'Inter', sans-serif;
+      --font-display: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--text-body);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ═══════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════ */
+
+    /* Base: invisible + shifted down */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-reveal="left"] {
+      transform: translateX(-32px);
+    }
+    [data-reveal="right"] {
+      transform: translateX(32px);
+    }
+    [data-reveal="scale"] {
+      transform: scale(0.94) translateY(16px);
+    }
+
+    /* Revealed */
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Stagger delays */
+    [data-delay="1"] { transition-delay: 0.08s; }
+    [data-delay="2"] { transition-delay: 0.16s; }
+    [data-delay="3"] { transition-delay: 0.24s; }
+    [data-delay="4"] { transition-delay: 0.32s; }
+    [data-delay="5"] { transition-delay: 0.40s; }
+    [data-delay="6"] { transition-delay: 0.48s; }
+    [data-delay="7"] { transition-delay: 0.56s; }
+    [data-delay="8"] { transition-delay: 0.64s; }
+
+    /* ═══════════════════════════════════
+       ANNOUNCEMENT BAR
+    ═══════════════════════════════════ */
+    .announcement-bar {
+      background: var(--text-dark);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .announcement-bar span { color: #93c5fd; font-weight: 500; }
+
+    /* ═══════════════════════════════════
+       HEADER
+    ═══════════════════════════════════ */
+    header {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: box-shadow 0.3s;
+    }
+    header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 28px; align-items: center; }
+    nav a {
+      font-size: 14px;
+      color: var(--text-body);
+      font-weight: 450;
+      transition: color 0.15s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    nav a:hover { color: var(--text-dark); }
+    nav a:hover::after { transform: scaleX(1); }
+    .header-actions { display: flex; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 9px 18px;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      line-height: 1;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,235,0.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: #c0c8d8; background: var(--off-white); }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    .hero {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 100px 24px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* subtle grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #e4e7ec 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      /* hero elements animate in on load */
+      opacity: 0;
+      transform: translateY(16px);
+      animation: heroIn 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.7s 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .btn-lg { padding: 13px 28px; font-size: 15px; border-radius: 10px; }
+    .hero-trust {
+      margin-top: 52px;
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: heroIn 0.7s 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .trust-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      flex-shrink: 0;
+      animation: pulse 2.5s ease infinite;
+    }
+    @keyframes heroIn {
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(5,150,105,0.4); }
+      50% { box-shadow: 0 0 0 5px rgba(5,150,105,0); }
+    }
+
+    /* ═══════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════ */
+    .stats-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+      padding: 8px 24px;
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    /* counter animation - starts at 0, triggers JS */
+    .stat-value[data-count] { color: var(--text-dark); }
+
+    /* ═══════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════ */
+    .section { padding: 80px 24px; }
+    .section-alt { background: var(--off-white); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.65;
+    }
+    .section-header { margin-bottom: 48px; }
+
+    /* ═══════════════════════════════════
+       PRODUCTS
+    ═══════════════════════════════════ */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+    .product-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+      border-color: #d0d8e8;
+    }
+    .product-img {
+      height: 200px;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent);
+    }
+    .product-img-placeholder {
+      width: 72px; height: 72px;
+      background: var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vial-icon {
+      width: 28px;
+      height: 52px;
+      background: linear-gradient(180deg, #dbeafe 0%, #93c5fd 100%);
+      border-radius: 4px 4px 8px 8px;
+      position: relative;
+    }
+    .vial-icon::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 10px;
+      background: var(--border);
+      border-radius: 2px 2px 0 0;
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      z-index: 1;
+      background: var(--text-dark);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .product-badge.hot { background: var(--accent); }
+    .product-badge.new-badge { background: #7c3aed; }
+    .product-body { padding: 18px 20px 20px; }
+    .product-category {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .product-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-family: var(--font-display);
+    }
+    .product-price span {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .btn-add {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-add:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+    .btn-add:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════
+       FEATURES / WHY LUMINOS
+    ═══════════════════════════════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .feature-card:hover .feature-icon {
+      background: #dbeafe;
+      transform: scale(1.1);
+    }
+    .feature-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .feature-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ═══════════════════════════════════
+       COA STRIP
+    ═══════════════════════════════════ */
+    .coa-strip {
+      background: var(--text-dark);
+      color: #fff;
+      padding: 72px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .coa-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(37,99,235,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .coa-strip-inner { position: relative; z-index: 1; }
+    .coa-strip h2 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .coa-strip p {
+      font-size: 15px;
+      color: #94a3b8;
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,255,255,0.2); }
+
+    /* ═══════════════════════════════════
+       RESEARCH FINDER
+    ═══════════════════════════════════ */
+    .finder-section { padding: 80px 24px; background: var(--white); }
+    .finder-intro { text-align: center; max-width: 600px; margin: 0 auto 48px; }
+    .finder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .finder-card {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      background: var(--white);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .finder-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-light);
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .finder-card:hover, .finder-card.active {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.12);
+    }
+    .finder-card:hover::before, .finder-card.active::before { opacity: 1; }
+    .finder-card.active::after {
+      content: '';
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .finder-card > * { position: relative; z-index: 1; }
+    .finder-card-icon {
+      width: 40px; height: 40px;
+      background: var(--light-gray);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .finder-card:hover .finder-card-icon,
+    .finder-card.active .finder-card-icon {
+      background: #dbeafe;
+      transform: scale(1.1);
+    }
+    .finder-card-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .finder-card-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+    .finder-card-sub { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+
+    .finder-results {
+      display: none;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      animation: fadeSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .finder-results.visible { display: block; }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    .finder-results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .finder-results-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .finder-results-sub { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .finder-compounds {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .finder-compound {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .finder-compound:nth-child(1) { animation-delay: 0.05s; }
+    .finder-compound:nth-child(2) { animation-delay: 0.10s; }
+    .finder-compound:nth-child(3) { animation-delay: 0.15s; }
+    .finder-compound:nth-child(4) { animation-delay: 0.20s; }
+    .compound-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .compound-tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      width: fit-content;
+    }
+    .compound-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1; }
+    .compound-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .compound-price { font-size: 17px; font-weight: 600; color: var(--text-dark); }
+    .compound-difficulty { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+    .compound-difficulty.beginner { color: var(--success); }
+    .compound-difficulty.intermediate { color: #d97706; }
+
+    /* ═══════════════════════════════════
+       DISCLAIMER
+    ═══════════════════════════════════ */
+    .disclaimer {
+      background: #fffbeb;
+      border-top: 1px solid #fde68a;
+      border-bottom: 1px solid #fde68a;
+      padding: 20px 24px;
+    }
+    .disclaimer p {
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 12.5px;
+      color: #92400e;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════ */
+    footer {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 32px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo { font-size: 18px; margin-bottom: 12px; display: block; }
+    .footer-brand p { font-size: 13px; color: var(--text-muted); line-height: 1.65; max-width: 260px; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 14px; }
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      transition: color 0.15s, padding-left 0.2s;
+    }
+    .footer-col a:hover { color: var(--text-dark); padding-left: 4px; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--text-muted); }
+
+    /* ═══════════════════════════════════
+       PROGRESS BAR (scroll indicator)
+    ═══════════════════════════════════ */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--accent);
+      z-index: 200;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════ */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 8px 12px; }
+      .stat-value { font-size: 22px; }
+      .hero { padding: 64px 20px 56px; }
+      .hero p { font-size: 15px; }
+      .section { padding: 56px 20px; }
+      .finder-section { padding: 56px 20px; }
+      .finder-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .finder-card { padding: 18px 14px; }
+      .finder-card-icon { width: 36px; height: 36px; margin-bottom: 10px; }
+      .finder-card-title { font-size: 13px; }
+      .finder-card-sub { font-size: 11.5px; }
+      .finder-results { padding: 20px; }
+      .finder-compounds { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .product-img { height: 150px; }
+      .product-body { padding: 14px 14px 16px; }
+      .product-name { font-size: 14px; }
+      .product-price { font-size: 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-inner { gap: 0; justify-content: space-between; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .finder-grid { grid-template-columns: 1fr 1fr; }
+      .header-inner { padding: 0 16px; }
+      .btn-outline { display: none; }
+      .logo { font-size: 17px; }
+      .announcement-bar { font-size: 11.5px; padding: 8px 16px; }
+      .hero-trust { gap: 16px; }
+      .trust-item { font-size: 12px; }
+      .stats-strip { padding: 20px 16px; }
+      .stat { padding: 6px 8px; }
+      .stat-value { font-size: 18px; }
+      .stat-label { font-size: 11px; }
+      .coa-strip { padding: 48px 20px; }
+      .section-title { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Use code <span>LUMINOS10</span> for 10% off your first order. Free shipping on orders over $150.
+  </div>
+
+  <!-- Header -->
+  <header id="mainHeader">
+    <div class="header-inner">
+      <a href="/" class="logo"><img src="logo.svg" alt="Luminos Peptides" style="height:44px; width:auto;" /></a>
+      <nav>
+        <a href="#">Products</a>
+        <a href="#">Categories</a>
+        <a href="#">Lab Reports</a>
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-outline">Account</a>
+        <a href="#" class="btn btn-primary">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Research Grade — For Scientific Use Only</div>
+      <h1>Precision Peptides for Serious Research</h1>
+      <p>Every product manufactured in GMP-compliant U.S. facilities. Third-party HPLC tested with a lot-specific Certificate of Analysis on every order.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary btn-lg">Browse Products</a>
+        <a href="#" class="btn btn-outline btn-lg">View Lab Reports</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-dot"></div> 99%+ Purity Guaranteed</div>
+        <div class="trust-item"><div class="trust-dot"></div> U.S. Manufactured</div>
+        <div class="trust-item"><div class="trust-dot"></div> COA on Every Order</div>
+        <div class="trust-item"><div class="trust-dot"></div> Fast, Discreet Shipping</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat" data-reveal data-delay="1">
+        <div class="stat-value" data-count="99.4" data-suffix="%">99.4%</div>
+        <div class="stat-label">Average Purity</div>
+      </div>
+      <div class="stat" data-reveal data-delay="2">
+        <div class="stat-value" data-count="48" data-suffix="h">48h</div>
+        <div class="stat-label">Order Fulfillment</div>
+      </div>
+      <div class="stat" data-reveal data-delay="3">
+        <div class="stat-value">3rd Party</div>
+        <div class="stat-label">HPLC Tested</div>
+      </div>
+      <div class="stat" data-reveal data-delay="4">
+        <div class="stat-value">GMP</div>
+        <div class="stat-label">Certified Facilities</div>
+      </div>
+      <div class="stat" data-reveal data-delay="5">
+        <div class="stat-value">COA</div>
+        <div class="stat-label">Included Every Order</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Finder -->
+  <section class="finder-section" id="finder">
+    <div class="container">
+      <div class="finder-intro" data-reveal>
+        <div class="section-label">Research Navigator</div>
+        <h2 class="section-title">Find your compound</h2>
+        <p class="section-sub" style="margin:0 auto;">Select an area of interest to see the relevant compounds, plain-English descriptions, and a starting point for your work.</p>
+      </div>
+
+      <div class="finder-grid">
+        <div class="finder-card" data-category="recovery" data-reveal data-delay="1">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Recovery & Repair</div>
+          <div class="finder-card-sub">Tissue healing, injury response, joint research</div>
+        </div>
+
+        <div class="finder-card" data-category="metabolic" data-reveal data-delay="2">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Metabolic & Weight</div>
+          <div class="finder-card-sub">GLP-1 pathways, glucose metabolism, body composition</div>
+        </div>
+
+        <div class="finder-card" data-category="cognitive" data-reveal data-delay="3">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Cognitive & Focus</div>
+          <div class="finder-card-sub">Neuroprotection, memory, stress response research</div>
+        </div>
+
+        <div class="finder-card" data-category="longevity" data-reveal data-delay="4">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Longevity & Anti-Aging</div>
+          <div class="finder-card-sub">Telomere research, cellular aging, skin repair</div>
+        </div>
+
+        <div class="finder-card" data-category="sleep" data-reveal data-delay="5">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Sleep & Stress</div>
+          <div class="finder-card-sub">Sleep cycle regulation, anxiety, cortisol research</div>
+        </div>
+
+        <div class="finder-card" data-category="performance" data-reveal data-delay="6">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Performance & Growth</div>
+          <div class="finder-card-sub">GH secretagogues, muscle biology, IGF pathways</div>
+        </div>
+
+        <div class="finder-card" data-category="sexual" data-reveal data-delay="7">
+          <div class="finder-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+          </div>
+          <div class="finder-card-title">Sexual Health</div>
+          <div class="finder-card-sub">Melanocortin receptor research, libido pathways</div>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="finder-results" id="finderResults">
+        <div class="finder-results-header">
+          <div>
+            <div class="finder-results-title" id="finderTitle"></div>
+            <div class="finder-results-sub" id="finderSub"></div>
+          </div>
+          <a href="#products" class="btn btn-outline" style="font-size:13px; padding:8px 16px;">View All Products</a>
+        </div>
+        <div class="finder-compounds" id="finderCompounds"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">Our Catalog</div>
+        <h2 class="section-title">Research Peptides</h2>
+        <p class="section-sub">All products sold strictly for research and laboratory use. Not for human consumption.</p>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card" data-reveal data-delay="1">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="product-badge">Best Seller</div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Recovery</div>
+            <div class="product-name">BPC-157</div>
+            <div class="product-desc">Body Protection Compound. 5mg lyophilized powder. Lot-specific COA included.</div>
+            <div class="product-footer">
+              <div class="product-price">$54.99 <span>/ 5mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="2">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="product-badge">Best Seller</div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Recovery</div>
+            <div class="product-name">TB-500</div>
+            <div class="product-desc">Thymosin Beta-4. 5mg lyophilized powder. Tissue repair and flexibility research.</div>
+            <div class="product-footer">
+              <div class="product-price">$59.99 <span>/ 5mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="3">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="product-badge hot">Hot</div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Metabolic</div>
+            <div class="product-name">Semaglutide</div>
+            <div class="product-desc">GLP-1 receptor agonist. 2mg lyophilized powder. Metabolic research compound.</div>
+            <div class="product-footer">
+              <div class="product-price">$79.99 <span>/ 2mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="4">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="product-badge hot">Hot</div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Metabolic</div>
+            <div class="product-name">Tirzepatide</div>
+            <div class="product-desc">Dual GLP-1/GIP agonist. 5mg lyophilized powder. Advanced metabolic research.</div>
+            <div class="product-footer">
+              <div class="product-price">$89.99 <span>/ 5mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="5">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Growth Hormone</div>
+            <div class="product-name">Ipamorelin / CJC-1295</div>
+            <div class="product-desc">Combined blend. 5mg/2mg lyophilized powder. GH secretagogue research stack.</div>
+            <div class="product-footer">
+              <div class="product-price">$69.99 <span>/ blend</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="6">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">PT-141</div>
+            <div class="product-desc">Bremelanotide. 10mg lyophilized powder. Melanocortin receptor research compound.</div>
+            <div class="product-footer">
+              <div class="product-price">$64.99 <span>/ 10mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="7">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="product-badge new-badge">New</div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Cognitive</div>
+            <div class="product-name">Semax</div>
+            <div class="product-desc">Heptapeptide ACTH analog. 30mg powder. Neuroprotective and cognitive research.</div>
+            <div class="product-footer">
+              <div class="product-price">$49.99 <span>/ 30mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-reveal data-delay="8">
+          <div class="product-img">
+            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+          </div>
+          <div class="product-body">
+            <div class="product-category">Longevity</div>
+            <div class="product-name">Epithalon</div>
+            <div class="product-desc">Tetrapeptide. 10mg lyophilized powder. Telomere and longevity research compound.</div>
+            <div class="product-footer">
+              <div class="product-price">$44.99 <span>/ 10mg</span></div>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Luminos -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">Why Luminos</div>
+        <h2 class="section-title">Quality you can verify</h2>
+        <p class="section-sub">We don't ask you to take our word for it. Every claim is backed by documentation.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card" data-reveal data-delay="1">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div class="feature-title">Third-Party HPLC Testing</div>
+          <div class="feature-desc">Every batch independently tested at certified U.S. laboratories. We publish the results — no exceptions.</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="2">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <div class="feature-title">GMP-Compliant Manufacturing</div>
+          <div class="feature-desc">Produced in U.S.-based facilities that adhere to Good Manufacturing Practices. Consistent quality, every batch.</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="3">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="feature-title">Certificate of Analysis</div>
+          <div class="feature-desc">Lot-specific COA included with every order. Full transparency into purity, identity, and endotoxin levels.</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="4">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <div class="feature-title">Fast, Discreet Shipping</div>
+          <div class="feature-desc">Orders ship within 48 hours. All packages sent in plain, unmarked packaging with no product identifiers.</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="5">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+          </div>
+          <div class="feature-title">Purity Guarantee</div>
+          <div class="feature-desc">If your independent HPLC test comes back below 98% purity, we'll replace or refund your order. No questions asked.</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="6">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <div class="feature-title">Research Support</div>
+          <div class="feature-desc">Our team is available to help with product specifications, documentation, and order inquiries Monday through Friday.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COA CTA -->
+  <div class="coa-strip">
+    <div class="coa-strip-inner" data-reveal>
+      <h2>Transparency is our standard</h2>
+      <p>Browse our full library of Certificates of Analysis. Every product, every batch, fully documented.</p>
+      <a href="#" class="btn btn-white btn-lg">View Lab Reports</a>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <p><strong>Research Use Only.</strong> All products sold by Luminos Peptides are intended for laboratory and research purposes only. These compounds are not approved by the FDA and are not intended for human consumption, medical diagnosis, or therapeutic use. By purchasing, you confirm you are a licensed researcher or qualified professional. All information provided is for educational and scientific reference only.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid" data-reveal>
+      <div class="footer-brand">
+        <img src="logo.svg" alt="Luminos Peptides" style="height:40px; width:auto; margin-bottom:12px; display:block;" />
+        <p>Research-grade peptides for the scientific community. Third-party tested, GMP manufactured, fully transparent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="#">Recovery</a>
+        <a href="#">Metabolic</a>
+        <a href="#">Growth Hormone</a>
+        <a href="#">Cognitive</a>
+        <a href="#">Longevity</a>
+        <a href="#">All Products</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Lab Reports</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Research Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2026 Luminos Peptides. All rights reserved.</p>
+      <p>For research and laboratory use only. Not for human consumption.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ═══════════════════════════════════════
+       SCROLL PROGRESS BAR
+    ═══════════════════════════════════════ */
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+    }, { passive: true });
+
+    /* ═══════════════════════════════════════
+       STICKY HEADER SHADOW
+    ═══════════════════════════════════════ */
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    /* ═══════════════════════════════════════
+       SCROLL REVEAL — IntersectionObserver
+    ═══════════════════════════════════════ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // don't re-animate
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ═══════════════════════════════════════
+       STATS COUNT-UP ANIMATION
+    ═══════════════════════════════════════ */
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const isDecimal = el.dataset.count.includes('.');
+      const duration = 1400;
+      const start = performance.now();
+
+      function step(now) {
+        const elapsed = Math.min((now - start) / duration, 1);
+        // ease out cubic
+        const progress = 1 - Math.pow(1 - elapsed, 3);
+        const current = target * progress;
+        el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+        if (elapsed < 1) requestAnimationFrame(step);
+        else el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target.querySelector('[data-count]');
+          if (el) animateCount(el);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat').forEach(stat => {
+      if (stat.querySelector('[data-count]')) countObserver.observe(stat);
+    });
+
+    /* ═══════════════════════════════════════
+       RESEARCH FINDER
+    ═══════════════════════════════════════ */
+    const finderData = {
+      recovery: {
+        title: "Recovery & Repair Research",
+        sub: "These compounds are most studied for their roles in tissue remodeling, angiogenesis, and cellular repair.",
+        compounds: [
+          { name: "BPC-157", tag: "Most Popular", desc: "A 15 amino acid peptide derived from gastric protein. Widely studied for its role in tissue healing, tendon repair, and gut lining integrity. The most common starting point for recovery research.", price: "$54.99", level: "beginner" },
+          { name: "TB-500", tag: "Recovery", desc: "Synthetic form of Thymosin Beta-4. Researched for its ability to promote cell migration, reduce inflammation, and support flexible tissue repair. Often stacked with BPC-157.", price: "$59.99", level: "beginner" },
+          { name: "BPC-157 + TB-500 Blend", tag: "Stack", desc: "Combined pre-measured blend of both compounds. Popular research protocol for comprehensive tissue and joint repair studies.", price: "$89.99", level: "beginner" },
+        ]
+      },
+      metabolic: {
+        title: "Metabolic & Weight Research",
+        sub: "GLP-1 and GIP receptor agonists driving the most significant area of metabolic peptide research today.",
+        compounds: [
+          { name: "Semaglutide", tag: "Most Popular", desc: "GLP-1 receptor agonist. The most-studied compound for glucose regulation and body weight modulation research. 2mg lyophilized powder.", price: "$79.99", level: "beginner" },
+          { name: "Tirzepatide", tag: "Advanced", desc: "Dual GLP-1/GIP receptor agonist. Newer compound showing strong results in metabolic research. More complex mechanism than semaglutide.", price: "$89.99", level: "intermediate" },
+          { name: "AOD-9604", tag: "Fat Metabolism", desc: "Modified fragment of human growth hormone (176-191). Studied specifically for fat cell metabolism without affecting blood sugar or IGF levels.", price: "$49.99", level: "beginner" },
+          { name: "Retatrutide", tag: "Cutting Edge", desc: "Triple GIP/GLP-1/glucagon receptor agonist. The newest and most potent compound in metabolic research. Limited availability.", price: "$99.99", level: "intermediate" },
+        ]
+      },
+      cognitive: {
+        title: "Cognitive & Neurological Research",
+        sub: "Neuropeptides studied for their effects on focus, memory, neuroprotection, and stress response.",
+        compounds: [
+          { name: "Semax", tag: "Most Popular", desc: "Synthetic ACTH analog developed in Russia. Extensively researched for neuroprotective properties, focus enhancement, and BDNF upregulation.", price: "$49.99", level: "beginner" },
+          { name: "Selank", tag: "Anxiety / Stress", desc: "Heptapeptide analog of tuftsin. Studied for anxiolytic effects and immune modulation without sedation. Pairs well with Semax.", price: "$44.99", level: "beginner" },
+          { name: "Dihexa", tag: "Memory", desc: "Potent nootropic peptide studied for its role in synaptogenesis and cognitive enhancement. Research suggests it may be significantly more potent than BDNF.", price: "$79.99", level: "intermediate" },
+        ]
+      },
+      longevity: {
+        title: "Longevity & Anti-Aging Research",
+        sub: "Compounds researched for telomere biology, cellular senescence, and tissue regeneration.",
+        compounds: [
+          { name: "Epithalon", tag: "Most Popular", desc: "Tetrapeptide studied for its ability to stimulate telomerase activity. One of the most researched longevity compounds. 10mg lyophilized powder.", price: "$44.99", level: "beginner" },
+          { name: "GHK-Cu", tag: "Skin / Repair", desc: "Copper peptide naturally found in human plasma. Extensively studied for wound healing, skin regeneration, and anti-inflammatory effects.", price: "$39.99", level: "beginner" },
+          { name: "MOTS-c", tag: "Mitochondria", desc: "Mitochondria-derived peptide studied for metabolic regulation, insulin sensitivity, and exercise-like cellular effects.", price: "$69.99", level: "intermediate" },
+        ]
+      },
+      sleep: {
+        title: "Sleep & Stress Research",
+        sub: "Peptides studied for their roles in sleep architecture, cortisol regulation, and stress response.",
+        compounds: [
+          { name: "DSIP", tag: "Sleep", desc: "Delta Sleep Inducing Peptide. A naturally occurring neuropeptide studied for its role in slow-wave sleep regulation and stress hormone modulation.", price: "$39.99", level: "beginner" },
+          { name: "Selank", tag: "Stress / Anxiety", desc: "Researched extensively for anxiolytic properties and stress response normalization. Does not cause sedation or dependency in research models.", price: "$44.99", level: "beginner" },
+        ]
+      },
+      performance: {
+        title: "Performance & Growth Research",
+        sub: "Growth hormone secretagogues and IGF-pathway compounds for muscle biology and body composition research.",
+        compounds: [
+          { name: "Ipamorelin / CJC-1295", tag: "Most Popular", desc: "The most common GH secretagogue research stack. Ipamorelin provides selective GH pulse; CJC-1295 extends the release window. Researched together for synergistic effect.", price: "$69.99", level: "beginner" },
+          { name: "IGF-1 LR3", tag: "Muscle Biology", desc: "Long R3 variant of Insulin-like Growth Factor. Studied for its role in muscle cell proliferation, satellite cell activation, and anabolic signaling.", price: "$79.99", level: "intermediate" },
+          { name: "Tesamorelin", tag: "GH Release", desc: "Synthetic GHRH analog. Studied for its role in stimulating pulsatile GH release and visceral fat reduction research.", price: "$74.99", level: "intermediate" },
+          { name: "Hexarelin", tag: "GH Secretagogue", desc: "Potent GH releasing peptide. Studied for its strong GH secretion effects and cardioprotective properties in research models.", price: "$59.99", level: "intermediate" },
+        ]
+      },
+      sexual: {
+        title: "Sexual Health Research",
+        sub: "Melanocortin receptor compounds studied for their role in sexual function and libido pathways.",
+        compounds: [
+          { name: "PT-141", tag: "Most Popular", desc: "Also known as Bremelanotide. Melanocortin receptor agonist studied for its role in sexual arousal pathways in both male and female research models. Acts centrally, not on vascular system.", price: "$64.99", level: "beginner" },
+          { name: "Kisspeptin-10", tag: "Hormone Axis", desc: "Neuropeptide involved in GnRH secretion and reproductive hormone regulation. Studied for its role in the HPG axis and fertility research.", price: "$54.99", level: "intermediate" },
+        ]
+      }
+    };
+
+    document.querySelectorAll('.finder-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.finder-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        const cat = card.dataset.category;
+        const data = finderData[cat];
+        const results = document.getElementById('finderResults');
+
+        document.getElementById('finderTitle').textContent = data.title;
+        document.getElementById('finderSub').textContent = data.sub;
+        document.getElementById('finderCompounds').innerHTML = data.compounds.map(c => `
+          <div class="finder-compound">
+            <div><span class="compound-tag">${c.tag}</span></div>
+            <div class="compound-name">${c.name}</div>
+            <div class="compound-desc">${c.desc}</div>
+            <div class="compound-footer">
+              <div class="compound-price">${c.price}</div>
+              <div class="compound-difficulty ${c.level}">${c.level === 'beginner' ? 'Good starting point' : 'Intermediate'}</div>
+            </div>
+          </div>
+        `).join('');
+
+        // hide first to re-trigger animation
+        results.classList.remove('visible');
+        void results.offsetWidth;
+        results.classList.add('visible');
+        results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  </script>
+</body>
+</html>
