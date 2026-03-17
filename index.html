@@ -351,8 +351,8 @@
       border-color: #d0d8e8;
     }
     .product-img {
-      height: 200px;
-      background: var(--light-gray);
+      height: 220px;
+      background: linear-gradient(160deg, #0a0f2e 0%, #0d1a4a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -363,7 +363,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent);
+      background: radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.12), transparent 70%);
     }
     .product-img-placeholder {
       width: 72px; height: 72px;
@@ -373,21 +373,25 @@
       align-items: center;
       justify-content: center;
     }
-    .vial-icon {
-      width: 28px;
-      height: 52px;
-      background: linear-gradient(180deg, #dbeafe 0%, #93c5fd 100%);
-      border-radius: 4px 4px 8px 8px;
+    .vial-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
       position: relative;
+      z-index: 1;
+      padding: 10px 0;
     }
-    .vial-icon::before {
-      content: '';
-      position: absolute;
-      top: -8px; left: 50%;
-      transform: translateX(-50%);
-      width: 14px; height: 10px;
-      background: var(--border);
-      border-radius: 2px 2px 0 0;
+    .vial-svg {
+      height: 190px;
+      width: auto;
+      filter: drop-shadow(0 8px 24px rgba(37,99,235,0.35)) drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .product-card:hover .vial-svg {
+      transform: translateY(-6px) scale(1.04);
+      filter: drop-shadow(0 16px 32px rgba(37,99,235,0.5)) drop-shadow(0 4px 10px rgba(0,0,0,0.4));
     }
     .product-badge {
       position: absolute;
@@ -991,7 +995,80 @@
 
         <div class="product-card" data-reveal data-delay="1">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#1d4ed8"/>
+                <rect x="40" y="72" width="40" height="8" fill="#1d4ed8"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">BPC-157</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">5mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#1d4ed8" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
             <div class="product-badge">Best Seller</div>
           </div>
           <div class="product-body">
@@ -1007,7 +1084,80 @@
 
         <div class="product-card" data-reveal data-delay="2">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#1d4ed8"/>
+                <rect x="40" y="72" width="40" height="8" fill="#1d4ed8"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">TB-500</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">5mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#1d4ed8" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
             <div class="product-badge">Best Seller</div>
           </div>
           <div class="product-body">
@@ -1023,7 +1173,80 @@
 
         <div class="product-card" data-reveal data-delay="3">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#0f766e"/>
+                <rect x="40" y="72" width="40" height="8" fill="#0f766e"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">Semaglutide</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">2mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#0f766e" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#0f766e" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
             <div class="product-badge hot">Hot</div>
           </div>
           <div class="product-body">
@@ -1039,7 +1262,80 @@
 
         <div class="product-card" data-reveal data-delay="4">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#0f766e"/>
+                <rect x="40" y="72" width="40" height="8" fill="#0f766e"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">Tirzepatide</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">5mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#0f766e" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#0f766e" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
             <div class="product-badge hot">Hot</div>
           </div>
           <div class="product-body">
@@ -1055,7 +1351,80 @@
 
         <div class="product-card" data-reveal data-delay="5">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#6d28d9"/>
+                <rect x="40" y="72" width="40" height="8" fill="#6d28d9"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">Ipamorelin/…</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">5mg/2mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#6d28d9" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#6d28d9" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
           <div class="product-body">
             <div class="product-category">Growth Hormone</div>
@@ -1070,7 +1439,80 @@
 
         <div class="product-card" data-reveal data-delay="6">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#7c3aed"/>
+                <rect x="40" y="72" width="40" height="8" fill="#7c3aed"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">PT-141</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">10mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#7c3aed" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#7c3aed" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
           <div class="product-body">
             <div class="product-category">Melanocortin</div>
@@ -1085,7 +1527,80 @@
 
         <div class="product-card" data-reveal data-delay="7">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#0369a1"/>
+                <rect x="40" y="72" width="40" height="8" fill="#0369a1"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">Semax</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">30mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#0369a1" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#0369a1" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
             <div class="product-badge new-badge">New</div>
           </div>
           <div class="product-body">
@@ -1101,7 +1616,80 @@
 
         <div class="product-card" data-reveal data-delay="8">
           <div class="product-img">
-            <div class="product-img-placeholder"><div class="vial-icon"></div></div>
+            <div class="vial-wrap">
+              <svg class="vial-svg" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+                <!-- Crimp cap -->
+                <rect x="44" y="8" width="32" height="6" rx="2" fill="#9ca3af"/>
+                <rect x="46" y="14" width="28" height="4" rx="1" fill="#6b7280"/>
+                <!-- Cap top -->
+                <rect x="42" y="2" width="36" height="10" rx="3" fill="#d1d5db"/>
+                <rect x="44" y="3" width="32" height="3" rx="1" fill="#f3f4f6" opacity="0.6"/>
+                <!-- Glass vial body -->
+                <rect x="38" y="18" width="44" height="210" rx="8" fill="url(#glassGrad)"/>
+                <!-- Glass shine left -->
+                <rect x="41" y="24" width="6" height="195" rx="3" fill="white" opacity="0.18"/>
+                <!-- Glass shine right -->
+                <rect x="91" y="24" width="4" height="195" rx="2" fill="white" opacity="0.08"/>
+                <!-- Bottom curve -->
+                <ellipse cx="60" cy="228" rx="22" ry="6" fill="url(#bottomGrad)" opacity="0.5"/>
+                <!-- White label -->
+                <rect x="40" y="52" width="40" height="148" rx="3" fill="white"/>
+                <!-- Blue header banner on label -->
+                <rect x="40" y="52" width="40" height="28" rx="3" fill="#0e7490"/>
+                <rect x="40" y="72" width="40" height="8" fill="#0e7490"/>
+                <!-- Product name on banner -->
+                <text x="60" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="white">Epithalon</text>
+                <text x="60" y="74" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="white" opacity="0.85">10mg</text>
+                <!-- Luminos logo area -->
+                <!-- Mini blue pyramid -->
+                <polygon points="60,86 54,96 66,96" fill="#0e7490" opacity="0.9"/>
+                <line x1="54" y1="97" x2="66" y2="97" stroke="#0e7490" stroke-width="1.5" opacity="0.5"/>
+                <!-- Brand name -->
+                <text x="60" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="bold" fill="#1e3a8a" letter-spacing="1">LUMINOS</text>
+                <text x="60" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="4" fill="#1e3a8a" letter-spacing="1">PEPTIDES</text>
+                <!-- Divider -->
+                <line x1="44" y1="120" x2="76" y2="120" stroke="#e5e7eb" stroke-width="0.8"/>
+                <!-- Purity -->
+                <text x="60" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#374151">Purity: ≥99%</text>
+                <!-- QR code placeholder -->
+                <rect x="50" y="135" width="20" height="20" rx="1" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <!-- QR pattern dots (decorative) -->
+                <rect x="52" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="62" y="137" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="52" y="147" width="6" height="6" rx="0.5" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+                <rect x="53.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63.5" y="138.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="53.5" y="148.5" width="3" height="3" fill="#9ca3af"/>
+                <rect x="63" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="65" y="144" width="1.5" height="1.5" fill="#9ca3af"/>
+                <rect x="63" y="146" width="1.5" height="1.5" fill="#9ca3af"/>
+                <!-- Disclaimer -->
+                <text x="60" y="162" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">For Research Use Only</text>
+                <text x="60" y="167" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="#9ca3af">Not for human use</text>
+                <!-- Lot line -->
+                <line x1="44" y1="172" x2="76" y2="172" stroke="#e5e7eb" stroke-width="0.6"/>
+                <text x="60" y="179" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.5" fill="#d1d5db">LOT: —  COA: QR</text>
+                <!-- Powder visual inside glass (below label) -->
+                <rect x="44" y="200" width="32" height="22" rx="3" fill="url(#powderGrad)" opacity="0.6"/>
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.25"/>
+                    <stop offset="30%" stop-color="#eff6ff" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#dbeafe" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.2"/>
+                  </linearGradient>
+                  <linearGradient id="bottomGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="powderGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
           <div class="product-body">
             <div class="product-category">Longevity</div>
